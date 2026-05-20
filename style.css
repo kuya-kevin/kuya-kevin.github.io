@@ -1,149 +1,348 @@
-/* This is a single-line comment */
-
-header {
-  width: 100%;
-  height: 100%;
-  
-}
-.header_img{
-  width: 100%;
-  height:auto;
-}
-
-.headshot{
-  height: auto;
-  width: 100%;
-  border-radius: 25px;
+:root {
+    --primary-color: #b32d2d;
+    --primary-hover: #8b2222;
+    --bg-color: #fdfdfd;
+    --section-bg: #f8f9fa;
+    --text-color: #333;
+    --text-muted: #666;
+    --card-bg: #ffffff;
+    --border-color: #eee;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
 }
 
-footer {
-  display: block;
+* {
+    box-sizing: border-box;
 }
 
-p {
-  line-height: 1.5;
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-    font-family: Helvetica;
-    font-size: larger;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 16px;
     font-weight: 300;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    margin: 0;
+}
 
-    background-color: #e0e0e0; /* Black */
-    margin: 0px 0px 0px 0px;
-  }
-
-  h1{
-      font-weight: 500;
-  }
-
-  a {
-    font-weight: 300;
-  }
-  
-  a:link {
-    color: #bb0000;
-    text-decoration: none;
-  }
-  a:hover {
-    color: #bb0000;
-    text-decoration: underline;
-  }
-  a:visited {
-    color: #bb0000;
-  }
-
-  .header_img {
+/* Hero Section */
+.hero {
     width: 100%;
-    height: 100%;
+    overflow: hidden;
 }
 
-.featured_projects{
-  border-style: solid;
-  border-spacing: 100px 50px;
-  padding: 1em 2em 1em 1em;
-  border-radius: 25px;
+.header_img {
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
-.featured_projects:hover{
-  background-color: rgba(0, 0, 0, 0.15);
+/* Layout Container */
+.container {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
-.projects_table{
-  border-spacing: 1em 0.5em;
-  padding: 1em 2em 1em 1em;
+/* Sidebar Navigation */
+.sidenav {
+    width: 200px;
+    position: sticky;
+    top: 40px;
+    height: fit-content;
+    margin-right: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sidenav-links {
+    display: contents;
+}
+
+.sidenav a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 16px;
+    font-weight: 400;
+    transition: var(--transition);
+    padding: 8px 0;
+    border-left: 2px solid transparent;
+    padding-left: 15px;
+}
+
+.sidenav a:hover {
+    color: var(--primary-color);
+    border-left-color: var(--primary-color);
+}
+
+.sidenav > a:first-child:hover {
+    border-left-color: transparent;
+}
+
+.headshot {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    padding: 40px 0;
+}
+
+.section {
+    margin-bottom: 80px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 20px;
+    letter-spacing: -0.02em;
+}
+
+p {
+    margin-bottom: 20px;
+    font-weight: 300;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+a:hover {
+    color: var(--primary-hover);
+}
+
+/* Projects Grid */
+.projects-intro {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-bottom: 40px;
+    max-width: 800px;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.project-card {
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow);
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.project-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    display: block;
+}
+
+.project-desc {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    flex-grow: 1;
 }
 
 .tags {
-  font-size: 12px;
-  color: #bb0000;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
 }
 
-  /* The sidebar menu */
-.sidenav {
-    float: left;
-    height: 100%; /* Full-height: remove this if you want "auto" height */
-    width: 10%; /* Set the width of the sidebar */
-    position: sticky; /* Fixed Sidebar (stay in place on scroll) */
-    top: 10px;
-    padding-top: 10px;
-    z-index: 1; /* Stay on top */
-    left: 20px;
-    font-size: 20px;
-    overflow-x: hidden; /* Disable horizontal scroll */
-    font-weight: 300;
-  }
+.tags span {
+    font-size: 0.75rem;
+    font-weight: 500;
+    background: var(--section-bg);
+    color: var(--primary-color);
+    padding: 4px 10px;
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+}
 
-  
-  /* The navigation menu links */
-  .sidenav a {
-    padding: 6px 8px 6px 16px;
-    text-decoration: none;
-    font-size: 20px;
-    color: #bb0000;
-    display: block;
-  }
-  
-  /* When you mouse over the navigation links, change their color */
-  .sidenav a:hover {
-    color: #bb0000;
-    text-decoration: underline;
-  }
-  
-  /* Style page content */
-  .main{
-    margin-left: 15%; /* Same as the width of the sidebar */
-    padding: 0px 10px;
-    margin-right: 10%;
-  }
+/* About Section */
+.about-container {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 60px;
+}
 
-  .contact_links{
+.about-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.resume-block {
+    padding: 20px;
+    background: var(--section-bg);
+    border-radius: 12px;
+    border-left: 4px solid var(--primary-color);
+}
+
+.resume-block h3 {
+    margin: 0 0 10px 0;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+}
+
+.resume-block p {
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+
+/* Contact Section */
+.contact-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.contact-link {
+    padding: 12px 24px;
+    background: var(--primary-color);
+    color: white !important;
+    border-radius: 8px;
+    font-weight: 500;
+    border: none;
+}
+
+.contact-link:hover {
+    background: var(--primary-hover);
+    border-bottom: none;
+}
+
+/* Footer */
+footer {
     text-align: center;
-    width: 100%;
-  }
-  
-  .resume_small{
-    border-top: 1px dotted;
-    border-bottom: 1px dotted;
-    width: 100%; /* whichever width you want */
-    height: 100%;
-    text-align: left;
+    padding: 60px 0;
+    margin-top: 40px;
+    border-top: 1px solid var(--border-color);
+}
 
-  }
+.footer_text {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
 
-  footer{
-    /* height: 400px; */
-    width: 100%;
-    /* background-color: beige; */
-  }
-  
-  .footer_text{
-    font-size: 10px;
-    text-align: center;
-  }
-  
-  /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
-  @media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 18px;}
-  }
+/* Responsive Design */
+@media (max-width: 900px) {
+    .container {
+        flex-direction: column;
+    }
+    .sidenav {
+        width: 100%;
+        position: relative;
+        top: 0;
+        margin-right: 0;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        margin-bottom: 8px;
+        gap: 16px;
+    }
+    .main-content {
+        padding: 16px 0;
+    }
+    .sidenav > a:first-child {
+        flex-shrink: 0;
+        padding: 0;
+        border: none;
+    }
+    .sidenav-links {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        flex: 1;
+        justify-content: flex-start;
+        gap: 4px;
+        overflow-x: auto;
+    }
+    .sidenav-links a {
+        border-left: none;
+        border-bottom: 2px solid transparent;
+        padding: 6px 8px;
+        font-size: 13px;
+        white-space: nowrap;
+    }
+    .sidenav-links a:hover {
+        border-bottom-color: var(--primary-color);
+    }
+    .headshot {
+        display: block;
+        width: 70px;
+        height: 70px;
+        object-fit: cover;
+        border-radius: 16px;
+        margin: 16px 0 0;
+        flex-shrink: 0;
+    }
+    .about-container {
+        grid-template-columns: 1fr;
+    }
+    .section {
+        margin-bottom: 40px;
+    }
+    .projects-grid {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        gap: 16px;
+        padding-bottom: 12px;
+    }
+    .project-card {
+        width: 200px;
+        min-width: 200px;
+        max-width: 200px;
+        flex-shrink: 0;
+        padding: 16px;
+    }
+    .project-name {
+        font-size: 1rem;
+    }
+    .project-desc {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2rem;
+    }
+    .contact-links {
+        flex-direction: column;
+    }
+    .contact-link {
+        text-align: center;
+    }
+}
