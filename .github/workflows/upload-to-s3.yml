@@ -25,10 +25,28 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1  # Set your desired region, e.g., us-east-1
 
-      # Sync repository files to S3 bucket
-      - name: Upload files to S3
+      # Sync static assets to S3 with long cache (images, css, js, fonts, etc.)
+      - name: Upload static assets to S3
         run: |
-          aws s3 sync . s3://kevinelaba.com --exclude ".git/*" --exclude ".github/*" --delete
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws s3 sync . s3://kevinelaba.com \
+            --exclude ".git/*" \
+            --exclude ".github/*" \
+            --exclude "*.html" \
+            --cache-control "public, max-age=31536000, immutable" \
+            --delete
+
+      # Sync HTML files with no-cache so updates show up immediately
+      - name: Upload HTML files to S3
+        run: |
+          aws s3 sync . s3://kevinelaba.com \
+            --exclude "*" \
+            --include "*.html" \
+            --cache-control "no-cache, no-store, must-revalidate" \
+            --content-type "text/html; charset=utf-8"
+
+      # Invalidate CloudFront cache so changes are visible right away
+      - name: Invalidate CloudFront cache
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
+            --paths "/*"
